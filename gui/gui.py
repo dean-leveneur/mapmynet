@@ -52,6 +52,7 @@ class Fenetre(tk.Tk):
     # Construction des widgets (boutons, listes...)
     # --------------------------------------------------
     def creer_widgets(self):
+        """Construit tous les widgets de l'interface : boutons, listes déroulantes, zones d'affichage."""
         # Titre de la section paramètres
         tk.Label(self.menu, text="Paramètres", font=("Arial", 13, "bold"), bg=self.fond).pack(pady=(5, 10))
 
@@ -132,7 +133,13 @@ class Fenetre(tk.Tk):
     # Chargement des fichiers CSV
     # --------------------------------------------------
     def charger_donnees(self):
-        # On recommence avec un graphe vide
+        """
+        Charge les donnees depuis les fichiers CSV (noeuds et aretes).
+
+        Le jeu de donnees depend du reseau selectionne dans l'interface
+        (reseau local ou reseau monde). Affiche une erreur si un fichier
+        est introuvable ou mal formatte.
+        """
         self.graphe = Graphe()
         self.chemin = []
 
@@ -147,33 +154,48 @@ class Fenetre(tk.Tk):
             fichier_noeuds = os.path.join(dossier, "noeuds.csv")
             fichier_aretes = os.path.join(dossier, "aretes.csv")
 
-        # Lecture des noeuds
-        with open(fichier_noeuds, "r", encoding="utf-8") as f:
-            lecteur = csv.DictReader(f)
-            for ligne in lecteur:
-                identifiant = ligne["ID_Routeur"].strip()
-                # Certaines colonnes ont des noms différents selon le fichier
-                nom = ligne.get("Nom_Routeur", ligne.get("Ville", identifiant)).strip()
-                x = float(ligne.get("Coord_X", ligne.get("Longitude", 0)))
-                y = float(ligne.get("Coord_Y", ligne.get("Latitude", 0)))
-                actif = ligne["Etat"].strip().lower() == "actif"
+        try:
+            # Lecture des noeuds
+            with open(fichier_noeuds, "r", encoding="utf-8") as f:
+                lecteur = csv.DictReader(f)
+                for ligne in lecteur:
+                    identifiant = ligne["ID_Routeur"].strip()
+                    # Certaines colonnes ont des noms différents selon le fichier
+                    nom = ligne.get("Nom_Routeur", ligne.get("Ville", identifiant)).strip()
+                    x = float(ligne.get("Coord_X", ligne.get("Longitude", 0)))
+                    y = float(ligne.get("Coord_Y", ligne.get("Latitude", 0)))
+                    actif = ligne["Etat"].strip().lower() == "actif"
 
-                self.graphe.ajouter_noeud(identifiant, x, y, nom, actif)
+                    self.graphe.ajouter_noeud(identifiant, x, y, nom, actif)
 
-        # Lecture des arêtes
-        with open(fichier_aretes, "r", encoding="utf-8-sig") as f:
-            lecteur = csv.DictReader(f)
-            for ligne in lecteur:
-                depart = ligne["Depart"].strip()
-                arrivee = ligne.get("Arrivee", ligne.get("Arrivée", "")).strip()
-                cout = float(ligne.get("Cout", ligne.get("Coût", 1)))
+            # Lecture des arêtes
+            with open(fichier_aretes, "r", encoding="utf-8-sig") as f:
+                lecteur = csv.DictReader(f)
+                for ligne in lecteur:
+                    depart = ligne["Depart"].strip()
+                    arrivee = ligne.get("Arrivee", ligne.get("Arrivée", "")).strip()
+                    cout = float(ligne.get("Cout", ligne.get("Coût", 1)))
 
-                self.graphe.ajouter_lien(depart, arrivee, cout)
+                    self.graphe.ajouter_lien(depart, arrivee, cout)
+
+        except FileNotFoundError as e:
+            messagebox.showerror(
+                "Erreur",
+                f"Fichier introuvable : {os.path.basename(e.filename)}.\n"
+                "Verifiez que les fichiers CSV sont presents dans le dossier data/."
+            )
+        except (csv.Error, ValueError, KeyError) as e:
+            messagebox.showerror(
+                "Erreur",
+                f"Erreur de lecture du fichier CSV : {e}.\n"
+                "Verifiez le format des fichiers de donnees."
+            )
 
     # --------------------------------------------------
     # Remplissage des listes déroulantes
     # --------------------------------------------------
     def remplir_listes(self):
+        """Remplit les listes deroulantes avec les noms des routeurs disponibles."""
         noeuds = self.graphe.get_noeuds()
         noms = [self.nom_noeud(n) for n in noeuds]
 

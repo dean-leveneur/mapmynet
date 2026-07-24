@@ -138,7 +138,7 @@ class Graphe:
 
     def charger_donnees(self, fichier_noeuds, fichier_liens):
         """
-        Lit deux fichiers CSV et remplit le graphe avec les données.
+        Lit deux fichiers CSV et remplit le graphe avec les donnees.
 
         Format attendu pour noeuds.csv :
             id, nom, x, y, etat
@@ -147,6 +147,9 @@ class Graphe:
         Format attendu pour aretes.csv :
             source, destination, cout
             R1, R2, 5
+
+        Leve une exception FileNotFoundError si un fichier est introuvable,
+        ou une exception ValueError si les donnees sont mal formatees.
         """
         # --- Lecture du fichier des noeuds ---
         with open(fichier_noeuds, newline="", encoding="utf-8") as f:
