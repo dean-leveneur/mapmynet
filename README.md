@@ -2,7 +2,7 @@
 
 **Simulateur de routage réseau interactif**
 
-Projet réalisé en 1ʳᵉ année de cycle préparatoire — **FIMI** (Formation d'Ingénieur en Mesures et Instrumentation) — **INSA Lyon**.
+Projet realise en 2e annee de cycle preparatoire - INSA Lyon, departement informatique (3IF).
 
 ---
 
@@ -105,4 +105,4 @@ python tests.py
 
 ## Licence
 
-Projet pédagogique — INSA Lyon, FIMI.
+Projet pedagogique - INSA Lyon.
