@@ -1,0 +1,7 @@
+ID_Routeur,Ville,Pays,Latitude,Longitude,Etat
+US_NY,New York,USA,40.71,-74.00,actif
+BR_SP,São Paulo,Brésil,-23.55,-46.63,actif
+FR_PA,Paris,France,48.85,2.35,actif
+MA_CA,Casablanca,Maroc,33.57,-7.58,actif
+CN_SH,Shanghai,Chine,31.23,121.47,actif
+AU_SY,Sydney,Australie,-33.86,151.20,panne

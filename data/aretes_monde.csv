@@ -1,0 +1,8 @@
+Depart,Arrivee,Cout,Nom_Lien_Reel
+US_NY,FR_PA,5800,Câble Transatlantique (Apollo)
+US_NY,BR_SP,7600,Câble Seabras-1
+FR_PA,MA_CA,1900,Terrestre + Câble SeaMeWe
+MA_CA,BR_SP,7500,Câble Atlantis-2
+FR_PA,CN_SH,9200,Réseau Terrestre Eurasiatique
+CN_SH,AU_SY,7800,Câble Asie-Pacifique
+AU_SY,US_NY,16000,Câble Southern Cross
