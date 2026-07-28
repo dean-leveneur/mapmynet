@@ -1,5 +1,8 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
+import csv
+import os
+import sys
 
 from algo.modele import Graphe, AlgorithmeParcours
 
@@ -141,8 +144,11 @@ class Fenetre(tk.Tk):
         self.graphe = Graphe()
         self.chemin = []
 
-        # Dossier "data" à côté du dossier du script
-        dossier = os.path.join(os.path.dirname(__file__), "..", "data")
+        # Dossier "data" (compatible exécution standard & exécutable PyInstaller)
+        if getattr(sys, 'frozen', False):
+            dossier = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(__file__)), "data")
+        else:
+            dossier = os.path.join(os.path.dirname(__file__), "..", "data")
 
         # Selon le réseau choisi, on prend les fichiers correspondants
         if self.combo_reseau.current() == 1:
