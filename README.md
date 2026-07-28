@@ -4,6 +4,8 @@
 
 Projet realise en 2e annee de cycle preparatoire - INSA Lyon, departement informatique (3IF).
 
+![Interface de MapMyNet](assets/mapmynet-interface.png)
+
 ---
 
 ## Description
