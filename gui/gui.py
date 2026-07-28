@@ -1,7 +1,5 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-import csv
-import os
 
 from algo.modele import Graphe, AlgorithmeParcours
 
