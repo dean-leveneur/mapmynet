@@ -2,7 +2,7 @@
 
 **Simulateur de routage réseau interactif**
 
-Projet realise en 2e annee de cycle preparatoire - INSA Lyon, departement informatique (3IF).
+Projet réalisé en 2e année de cycle préparatoire - INSA Lyon, département informatique (3IF).
 
 ![Interface de MapMyNet](assets/mapmynet-interface.png)
 
@@ -33,7 +33,7 @@ MapMyNet est un simulateur de routage réseau qui permet de visualiser un résea
 
 ## Structure du projet
 
-```
+`
 mapmynet/
 ├── algo/
 │   └── modele.py        # Modèle MVC : Graphe + algorithmes de routage
@@ -49,7 +49,7 @@ mapmynet/
 ├── main.py               # Point d'entrée de l'application
 ├── README.md
 └── .gitignore
-```
+`
 
 ---
 
@@ -61,18 +61,18 @@ mapmynet/
 - **Tkinter** (inclus par défaut avec Python sur Windows, macOS et Linux)
 
 > Sur Linux, si Tkinter est absent :
-> ```bash
+> `ash
 > sudo apt install python3-tk
-> ```
+> `
 
-Aucune bibliothèque tierce n'est nécessaire — pas de `pip install`.
+Aucune bibliothèque tierce n'est nécessaire — pas de pip install.
 
 ### Lancement
 
-```bash
+`ash
 cd mapmynet
 python main.py
-```
+`
 
 L'interface graphique s'ouvre automatiquement.
 
@@ -88,10 +88,10 @@ L'interface graphique s'ouvre automatiquement.
 
 ### Tests
 
-```bash
+`ash
 cd test
 python tests.py
-```
+`
 
 ---
 
@@ -107,4 +107,4 @@ python tests.py
 
 ## Licence
 
-Projet pedagogique - INSA Lyon.
+Projet pédagogique - INSA Lyon.
